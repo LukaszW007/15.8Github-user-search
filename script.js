@@ -1,7 +1,5 @@
-
-
 class App extends React.Component {
-    constructor() {
+    constructor () {
         super();
         this.state = {
             searchText: '',
@@ -9,11 +7,11 @@ class App extends React.Component {
         };
     }
 
-    onChangeHandle(event) {
+    onChangeHandle (event) {
         this.setState({searchText: event.target.value});
     }
 
-    onSubmit(event) {
+    onSubmit (event) {
         event.preventDefault();
         const {searchText} = this.state;
         const url = `https://api.github.com/search/users?q=${searchText}`;
@@ -22,31 +20,31 @@ class App extends React.Component {
             .then(responseJson => this.setState({users: responseJson.items}));
     }
 
-    render() {
+    render () {
         return (
             <div>
-                <form onSubmit={event => this.onSubmit(event)}>
-                    <label htmlFor="searchText">Search by user name</label>
+                <form onSubmit = {event => this.onSubmit(event)}>
+                    <label htmlFor = "searchText">Search by user name</label>
                     <input
-                        type="text"
-                        id="searchText"
-                        onChange={event => this.onChangeHandle(event)}
-                        value={this.state.searchText}/>
+                        type = "text"
+                        id = "searchText"
+                        onChange = {event => this.onChangeHandle(event)}
+                        value = {this.state.searchText}/>
                 </form>
-                <UsersList users={this.state.users}/>
+                <UsersList users = {this.state.users}/>
             </div>
         );
     }
 }
 
 class UsersList extends React.Component {
-    get users() {
-        return this.props.users.map(user => <User key={user.id} user={user}/>);
+    get users () {
+        return this.props.users.map(user => <User key = {user.id} user = {user}/>);
     }
 
-    render() {
+    render () {
         return (
-            <div>
+            <div className = 'users-list'>
                 {this.users}
             </div>
         );
@@ -54,16 +52,17 @@ class UsersList extends React.Component {
 }
 
 class User extends React.Component {
-    render() {
+    render () {
         return (
-            <div>
-                <img src={this.props.user.avatar_url} style={{maxWidth: '100px'}}/>
-                <a href={this.props.user.html_url} target="_blank">{this.props.user.login}</a>
+            <div className = 'user'>
+                <img src = {this.props.user.avatar_url} style = {{maxWidth: '100px'}}/>
+                <a href = {this.props.user.html_url} target = "_blank">{this.props.user.login}</a>
             </div>
         );
     }
 }
+
 ReactDOM.render(
-    <App />,
+    <App/>,
     document.getElementById('root')
 );

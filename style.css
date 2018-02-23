@@ -1,0 +1,27 @@
+*{
+    box-sizing: border-box;
+}
+form{
+    margin:0 auto;
+    width:600px;
+    display: flex;
+    flex-direction: column;
+}
+form label{
+    font-size: 26px;
+    margin: 0 auto;
+    flex:1;
+}
+
+.user{
+    width: 250px;
+    margin: 10px auto;
+    display: inline-block;
+    position: relative;
+}
+.user a{
+    margin: 0 auto;
+    padding: 10px;
+    position: relative;
+    bottom: 50px;
+}
